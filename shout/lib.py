@@ -44,7 +44,7 @@ class SubscriberAsync:
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
     
     async def get(self):
-        s = self.socket.recv_string()
+        s = await self.socket.recv_string()
         i, s, d, t = s.split('|')
         return Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), i, s, d, t)
 
