@@ -23,9 +23,12 @@ class Subscriber:
         self.socket.connect(url)
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
     
-    def get(self):
-        s = self.socket.recv_string()
-        i, s, d, t = s.split('|')
+    def get(self, block=True):
+        s = self.socket.recv_string(flags=zmq.NOBLOCK if not block else 0)
+        try:
+            i, s, d, t = s.split('|')
+        except ValueError:
+             Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0, '', '', t)
         return Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), i, s, d, t)
 
 
