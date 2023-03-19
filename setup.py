@@ -17,7 +17,7 @@ setup(
     license="MIT",
     packages=["shout"],
     install_requires=[
-        "whispercpp",
+        "zmq",
         "click"
     ],
     entry_points="""
