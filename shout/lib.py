@@ -28,7 +28,7 @@ class Subscriber:
         try:
             i, s, d, t = s.split('|')
         except ValueError:
-             Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0, '', '', t)
+             return Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), 0, '', '', s)
         return Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), i, s, d, t)
 
 

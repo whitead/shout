@@ -22,7 +22,7 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        shout=shout.main:transcribe
+        shout=shout.main:main
             """,
     package_data={"shout": ["vmd/*.vmd"]},
     long_description=long_description,
