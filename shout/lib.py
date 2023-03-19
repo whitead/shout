@@ -24,7 +24,10 @@ class Subscriber:
         self.socket.setsockopt_string(zmq.SUBSCRIBE, "")
     
     def get(self, block=True):
-        s = self.socket.recv_string(flags=zmq.NOBLOCK if not block else 0)
+        try:
+            s = self.socket.recv_string(flags=zmq.NOBLOCK if not block else 0)
+        except zmq.error.Again:
+            return None
         try:
             i, s, d, t = s.split('|')
         except ValueError:
