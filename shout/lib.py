@@ -45,7 +45,7 @@ class SubscriberAsync:
     
     async def get(self):
         s = await self.socket.recv_string()
-        i, s, d, t = s.split('|')
+        t, i, s, d = s.split('|')
         return Message(datetime.now().strftime("%Y-%m-%d %H:%M:%S"), i, s, d, t)
 
 
